@@ -1,0 +1,5 @@
+JRE = Java Runtime Environment
+(enables java code execution)
+
+JDK = Java Development Kit
+Open source = OpenJDK
