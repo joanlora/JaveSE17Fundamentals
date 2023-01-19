@@ -3,39 +3,40 @@ package CalcEngine;
 public class MathEquation {
     private double leftVal;
     private double rightVal;
-    private char opCode;
+    private MathOperation opCode;
     private double result;
 
     private static int numberOfCalculations;
     private static double sumOfResults;
 
 
-
     public MathEquation() {
     }
 
-    public MathEquation(char opCode) {
+    public MathEquation(MathOperation opCode) {
         this.opCode = opCode;
     }
 
-    public MathEquation(char opCode, double leftVal, double rightVal) {
+
+
+    public MathEquation(MathOperation opCode, double leftVal, double rightVal) {
         this(opCode);
         this.leftVal = leftVal;
         this.rightVal = rightVal;
     }
 
-    void execute() {
+    public void execute() {
         switch (opCode) {
-            case 'a':
+            case ADD:
                 result = leftVal + rightVal;
                 break;
-            case 's':
+            case SUBTRACT:
                 result = leftVal - rightVal;
                 break;
-            case 'm':
+            case MULTIPLY:
                 result = leftVal * rightVal;
                 break;
-            case 'd':
+            case DIVIDE:
                 result = rightVal != 0 ? leftVal / rightVal : 0.0d;
                 break;
             default:
@@ -48,7 +49,38 @@ public class MathEquation {
         sumOfResults += result;
     }
 
-    public static double getAverageResult(){
+    public void execute(double leftVal, double rightVal) {
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+
+        execute();
+    }
+
+    public void execute(int leftVal, int rightVal) {
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+
+        execute();
+
+        result = (int) result;
+    }
+
+    public String toString() {
+        char symbol = opCode.getSymbol();
+        StringBuilder builder = new StringBuilder(20);
+        builder.append(leftVal);
+        builder.append(" ");
+        builder.append(symbol);
+        builder.append(" ");
+        builder.append(rightVal);
+        builder.append(" = ");
+        builder.append(result);
+        return builder.toString();
+    }
+
+
+
+    public static double getAverageResult() {
         return sumOfResults / numberOfCalculations;
     }
 
@@ -57,7 +89,7 @@ public class MathEquation {
         return result;
     }
 
-    /*
+
     public double getLeftVal() {
         return leftVal;
     }
@@ -74,8 +106,12 @@ public class MathEquation {
         this.rightVal = rightVal;
     }
 
-    public void setOpCode(char opCode) {
+    public MathOperation getOpCode() {
+        return opCode;
+    }
+
+    public void setOpCode(MathOperation opCode) {
         this.opCode = opCode;
-    } */
+    }
 
 }
