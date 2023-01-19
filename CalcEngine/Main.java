@@ -44,6 +44,8 @@ public class Main {
             equation.execute();
             System.out.println("result = " + equation.getResult());
         }
+
+        System.out.println("Average result = " + MathEquation.getAverageResult());
     }
 
     /* private static MathEquation create(double leftVal, double rightVal, char opCode) {

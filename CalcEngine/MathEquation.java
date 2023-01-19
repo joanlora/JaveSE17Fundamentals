@@ -1,10 +1,15 @@
 package CalcEngine;
 
 public class MathEquation {
-    double leftVal;
-    double rightVal;
-    char opCode;
-    double result;
+    private double leftVal;
+    private double rightVal;
+    private char opCode;
+    private double result;
+
+    private static int numberOfCalculations;
+    private static double sumOfResults;
+
+
 
     public MathEquation() {
     }
@@ -38,7 +43,15 @@ public class MathEquation {
                 result = 0.0d;
                 break;
         }
+
+        numberOfCalculations++;
+        sumOfResults += result;
     }
+
+    public static double getAverageResult(){
+        return sumOfResults / numberOfCalculations;
+    }
+
 
     public double getResult() {
         return result;
@@ -52,8 +65,6 @@ public class MathEquation {
     public void setLeftVal(double leftVal) {
         this.leftVal = leftVal;
     }
-
-
 
     public double getRightVal() {
         return rightVal;
