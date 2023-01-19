@@ -20,6 +20,9 @@ public class Main {
             for (double currentResult : results) {
                 System.out.println(currentResult);
             }
+
+            System.out.println("\nUsing the Math Equation Class and Array:");
+            performCalculations();
         } else if (args.length == 1 && args[0].equals("interactive")) {
             executeInteractively();
         } else if (args.length == 3) {
@@ -27,6 +30,28 @@ public class Main {
         } else {
             System.out.println("PLease provide an operation code and 2 numeric values");
         }
+    }
+
+    static void performCalculations() {
+        MathEquation[] equations = new MathEquation[4];
+        equations[0] = create(100.0d, 50.0d, 'd');
+        equations[1] = create(25.0d, 92.0d, 'a');
+        equations[2] = create(225.0d, 17.0d, 's');
+        equations[3] = create(11.0d, 3.0d, 'm');
+
+        for (MathEquation equation : equations) {
+            equation.execute();
+            System.out.println("result = " + equation.result);
+        }
+    }
+
+    private static MathEquation create(double leftVal, double rightVal, char opCode) {
+        MathEquation equation = new MathEquation();
+        equation.leftVal = leftVal;
+        equation.rightVal = rightVal;
+        equation.opCode = opCode;
+        return equation;
+
     }
 
     static void executeInteractively() {
@@ -42,10 +67,10 @@ public class Main {
         double leftVal = valueFromWord(parts[1]);
         double rightVal = valueFromWord(parts[2]);
         double result = execute(opCode, leftVal, rightVal);
-        displayResult(opCode,leftVal,rightVal,result);
+        displayResult(opCode, leftVal, rightVal, result);
     }
 
-    private static void displayResult (char opCode, double leftVal, double rightVal, double result){
+    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
         char symbol = symbolFromOpCode(opCode);
         StringBuilder builder = new StringBuilder(20);
         builder.append(leftVal);
@@ -58,12 +83,13 @@ public class Main {
         String output = builder.toString();
         System.out.println(output);
     }
-    private static char symbolFromOpCode(char opCode){
+
+    private static char symbolFromOpCode(char opCode) {
         char[] opCodes = {'a', 's', 'm', 'd'};
         char[] symbols = {'+', '-', '*', '/'};
         char symbol = ' ';
-        for(int index = 0; index < opCodes.length; index++){
-            if(opCode == opCodes[index]){
+        for (int index = 0; index < opCodes.length; index++) {
+            if (opCode == opCodes[index]) {
                 symbol = symbols[index];
                 break;
             }
@@ -109,8 +135,7 @@ public class Main {
     }
 
     static double valueFromWord(String word) {
-        String[] numberWords = {"zero", "one", "two", "three", "four",
-                "five", "six", "seven", "eight", "nine"};
+        String[] numberWords = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
         double value = 0d;
         for (int index = 0; index < numberWords.length; index++) {
