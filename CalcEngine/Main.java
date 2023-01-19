@@ -6,28 +6,14 @@ public class Main { // Left off at start of Module 11
 
 
     public static void main(String[] args) {
-        double[] leftVals = {100.0d, 25.0d, 225.0d, 11.0d};
-        double[] rightVals = {50.0d, 92.0d, 17.0d, 3.0d};
-        char[] opCodes = {'d', 'a', 's', 'm'};
-        double[] results = new double[opCodes.length];
+
 
         if (args.length == 0) {
-            for (int i = 0; i < opCodes.length; i++) {
-                results[i] = execute(opCodes[i], leftVals[i], rightVals[i]);
-            }
-
-
-            for (double currentResult : results) {
-                System.out.println(currentResult);
-            }
-
-            System.out.println("\nUsing the Math Equation Class and Array:");
             performCalculations();
-
         } else if (args.length == 1 && args[0].equals("interactive")) {
             executeInteractively();
         } else if (args.length == 3) {
-            handleCommandLine(args);
+            performOperation(args);
         } else {
             System.out.println("PLease provide an operation code and 2 numeric values");
         }
@@ -52,12 +38,12 @@ public class Main { // Left off at start of Module 11
         MathEquation equationOverload = new MathEquation(MathOperation.DIVIDE);
         double leftDouble = 9.0d;
         double rightDouble = 4.0d;
-        equationOverload.execute(leftDouble,rightDouble);
+        equationOverload.execute(leftDouble, rightDouble);
         System.out.println("Overload result with doubles: " + equationOverload.getResult());
 
         int leftInt = 9;
         int rightInt = 4;
-        equationOverload.execute(leftInt,rightInt);
+        equationOverload.execute(leftInt, rightInt);
         System.out.println("Overload result with ints: " + equationOverload.getResult());
     }
 
@@ -87,7 +73,7 @@ public class Main { // Left off at start of Module 11
         System.out.println(equation);
     }
 
-    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
+    /*private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
         char symbol = symbolFromOpCode(opCode);
         StringBuilder builder = new StringBuilder(20);
         builder.append(leftVal);
@@ -99,7 +85,7 @@ public class Main { // Left off at start of Module 11
         builder.append(result);
         String output = builder.toString();
         System.out.println(output);
-    }
+    }*/
 
     private static char symbolFromOpCode(char opCode) {
         char[] opCodes = {'a', 's', 'm', 'd'};
@@ -114,15 +100,15 @@ public class Main { // Left off at start of Module 11
         return symbol;
     }
 
-    private static void handleCommandLine(String[] args) {
+    /*private static void handleCommandLine(String[] args) {
         char opCode = args[0].charAt(0);
         double leftVal = Double.parseDouble(args[1]);
         double rightVal = Double.parseDouble(args[2]);
         double result = execute(opCode, leftVal, rightVal);
         System.out.println(result);
-    }
+    }*/
 
-    static double execute(char opCode, double leftVal, double rightVal) {
+    /*static double execute(char opCode, double leftVal, double rightVal) {
         double result;
         switch (opCode) {
             case 'a':
@@ -144,12 +130,12 @@ public class Main { // Left off at start of Module 11
         }
 
         return result;
-    }
+    }*/
 
-    static char opCodeFromString(String operationName) {
+    /*static char opCodeFromString(String operationName) {
         char opCode = operationName.charAt(0);
         return opCode;
-    }
+    }*/
 
     static double valueFromWord(String word) {
         String[] numberWords = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
@@ -163,7 +149,7 @@ public class Main { // Left off at start of Module 11
                 break;
             }
         }
-        if(!isValueSet){
+        if (!isValueSet) {
             value = Double.parseDouble(word);
         }
         return value;
